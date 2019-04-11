@@ -3,7 +3,7 @@
 import serial
 import time
 
-with ser = serial.Serial('/dev/tty.usbserial-XXXXXX',9600,timeout=None):
-    line = ser.readline()
-    print(line)
-    time.sleep(1)
+with serial.Serial('/dev/tty.usbserial-XXXXXX',9600,timeout=None) as ser:
+    while True:
+        sbytes = serial.inWaiting()
+        ser.read(sbytes)
