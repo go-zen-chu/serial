@@ -2,6 +2,10 @@
 
 Testing serial communication.
 
+## Requirement
+
+Python >= 3.6 for async/await.
+
 ## install
 
 ```
