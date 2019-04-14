@@ -46,12 +46,12 @@ async def send_hello(websocket, path):
         await asyncio.sleep(5)
 
 async def serial_reciever(websocket, path):
-    with serial.Serial('/dev/tty.usbserial-XXXXXX',9600,timeout=None) as ser:
+    print("start serial receiver")
+    with serial.Serial('/dev/tty.usbserial-DJ00LWVR',9600,timeout=None) as ser:
         while True:
-            sbytes = serial.inWaiting()
-            signal = ser.read(sbytes)
-            await websocket.send(signal)
-            await asyncio.sleep(1)
+            signal = ser.read()
+            print(signal.decode("ascii"))
+            await websocket.send(signal.decode("ascii"))
 
 if __name__ == '__main__':
     # start_server = websockets.serve(serial_reciever, 'localhost', 5001)
